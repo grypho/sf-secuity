@@ -1,0 +1,37 @@
+{% if default_template is defined %}
+{% extends default_template %}
+{% endif %}
+
+{% block content %}
+{# src/Acme/SecurityBundle/Resources/views/Security/login.html.twig #}
+{# see http://symfony.com/doc/current/cookbook/security/form_login.html #}
+<fieldset class="login">
+	<h1>Einloggen</h1>
+	{% if error %}
+		<div class="login_error">{{ error }}</div>
+	{% endif %}
+
+	<form action="{{ path('login_check') }}" method="post">
+		<div>
+		<label for="username">Benutzername:</label>
+		<input type="text" id="username" name="_username" value="{{ last_username }}" />
+		</div>
+
+		<div>
+		<label for="password">Passwort:</label>
+		<input type="password" id="password" name="_password" />
+		</div>
+
+		{# URL für Redirect nach Login darf hier nicht stehen, sonst wird der User NUR auf diese Seite verwiesen und nicht auf die referer-Seite!#}
+		{# <input type="hidden" name="_target_path" value="{{ target_path }}" /> #}
+
+		<input type="submit" name="login" value="Login"/>
+		<br><a href="{{ path('login_forget_password') }}">Passwort vergessen?</a>
+		<br><br>
+                {% if facebook_login %}
+		{{ render(controller('Grypho\\SecurityBundle\\Controller\\LoginWithFacebookController::renderLoginButtonAction')) }}
+
+                {% endif %}
+	</form>
+</fieldset>
+{% endblock %}

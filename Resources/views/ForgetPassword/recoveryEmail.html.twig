@@ -1,0 +1,12 @@
+Hallo {{user.fullName}},
+
+Du hast das Zurücksetzen Deines Passworts über das Web-Formular angefordert.
+
+Bitte klicke folgenden Link, um das Passwort zurückzusetzen:
+
+{{ url("login_forget_confirm", {token: user.oneTimeToken}) }}
+
+Solltest Du das Zurücksetze Deines Passworts nicht angefordert haben,
+kannst Du die Email ignorieren.
+
+Dein {{sender}}

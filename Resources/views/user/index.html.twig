@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>User list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Isactive</th>
+                <th>Lastactivityat</th>
+                <th>Logincount</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('admin_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.username }}</td>
+                <td>{% if user.isActive %}Yes{% else %}No{% endif %}</td>
+                <td>{% if user.lastactivityAt %}{{ user.lastactivityAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ user.loginCount }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

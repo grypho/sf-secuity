@@ -1,0 +1,10 @@
+{% extends default_template %}
+
+{% block content %}
+<fieldset class="login">
+	<h2>Fehler</h2>
+    <div>Der von Dir verwendete Link zum Wiederherstellen des Passworts ist 
+		entweder ungültig oder abgelaufen. Bitte lass Dir 
+		<a href="{{ path('login_forget_password') }}">einen neuen Link zuschicken</a>.</div>
+</fieldset>
+{% endblock %}
